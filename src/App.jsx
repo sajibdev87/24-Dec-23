@@ -1,18 +1,32 @@
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import "./App.css";
-import Navber from './components/Navber/Navber'
-import Home from './components/Home/Home'
-
-
+import Home from "./components/Home/Home";
+import Main from "./Layout/Main";
+import Shop from "./components/Shop/Shop";
 
 function App() {
+  const router = createBrowserRouter([
+    {
+      path: "/",
+      element: <Main></Main>,
+      children: [
+        {
+          path: "/",
+          element: <Home></Home>,
+        },
+        {
+          path: "/shop",
+          element: <Shop></Shop>,
+        },
+      ],
+    },
+  ]);
+
   return (
     <div>
-      <Navber></Navber>
-      <Home></Home>
-      
-      
+      <RouterProvider router={router}></RouterProvider>
     </div>
-  );
+  )
 }
 
 export default App;
